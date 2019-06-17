@@ -28,9 +28,9 @@ const siteContent = {
   },
   "contact": {
     "contact-h4" : "Contact",
-    "address" : "123 Way 456 Street Somewhere, USA",
-    "phone" : "1 (888) 888-8888",
-    "email" : "sales@greatidea.io",
+    "address-info" : "123 Way 456 Street Somewhere, USA",
+    "phone-info" : "1 (888) 888-8888",
+    "email-info" : "sales@greatidea.io",
   },
   "footer": {
     "copyright" : "Copyright Great Idea! 2018"
@@ -67,21 +67,31 @@ let headers = [];
 for(const [key, value] of Object.entries(siteContent['main-content'])) {
   if (key.includes('-h4')) headers.push(value);
 }
-headerElements.forEach(( element, idx) => {
-  element.textContent = headers[idx];
-});
+headerElements.forEach((element, idx) => {element.textContent = headers[idx]});
 
-// find sentences and map those to the '.text-content p' elements
+// find the paragraphs and map those to the '.text-content p' elements
 let textElements = document.querySelectorAll('.text-content p');
 let paragraphs = [];
 for(const [key, value] of Object.entries(siteContent['main-content'])) {
   if (key.includes('content')) paragraphs.push(value);
 }
-textElements.forEach((element, idx) => {
-  element.textContent = paragraphs[idx];
-});
+textElements.forEach((element, idx) => {element.textContent = paragraphs[idx]});
 
 // middle img
 let middleImg = document.getElementById('middle-img');
 middleImg.setAttribute('src', siteContent['main-content']['middle-img-src']);
 
+
+// CONTACT SECTION
+let contactHeader = document.querySelector('.contact h4');
+contactHeader.textContent = siteContent['contact']['contact-h4'];
+
+// contact info 
+let contactInfoElements = document.querySelectorAll('.contact p');
+let infoContent = [];
+for(const [key, value] of Object.entries(siteContent['contact'])) {
+  if (key.includes('-info')) infoContent.push(value);
+}
+for (let i = 0; i < contactInfoElements.length; i++) {
+  contactInfoElements[i].textContent = infoContent[i]; 
+}
