@@ -95,3 +95,8 @@ for(const [key, value] of Object.entries(siteContent['contact'])) {
 for (let i = 0; i < contactInfoElements.length; i++) {
   contactInfoElements[i].textContent = infoContent[i]; 
 }
+
+
+// FOOTER SECTION
+let footerP = document.querySelector('footer p');
+footerP.textContent = siteContent['footer']['copyright'];
