@@ -58,3 +58,30 @@ ctaBtn.textContent = siteContent['cta']['button'];
 
 let ctaImg = document.getElementById('cta-img');
 ctaImg.setAttribute('src', siteContent['cta']['img-src']);
+
+
+// MAIN CONTENT SECTION
+//find h4 keys in the main-content object and map those to the '.text-content h4' elements 
+let headerElements = document.querySelectorAll('.text-content h4');
+let headers = [];
+for(const [key, value] of Object.entries(siteContent['main-content'])) {
+  if (key.includes('-h4')) headers.push(value);
+}
+headerElements.forEach(( element, idx) => {
+  element.textContent = headers[idx];
+});
+
+// find sentences and map those to the '.text-content p' elements
+let textElements = document.querySelectorAll('.text-content p');
+let paragraphs = [];
+for(const [key, value] of Object.entries(siteContent['main-content'])) {
+  if (key.includes('content')) paragraphs.push(value);
+}
+textElements.forEach((element, idx) => {
+  element.textContent = paragraphs[idx];
+});
+
+// middle img
+let middleImg = document.getElementById('middle-img');
+middleImg.setAttribute('src', siteContent['main-content']['middle-img-src']);
+
