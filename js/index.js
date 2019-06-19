@@ -28,15 +28,75 @@ const siteContent = {
   },
   "contact": {
     "contact-h4" : "Contact",
-    "address" : "123 Way 456 Street Somewhere, USA",
-    "phone" : "1 (888) 888-8888",
-    "email" : "sales@greatidea.io",
+    "address-info" : "123 Way 456 Street Somewhere, USA",
+    "phone-info" : "1 (888) 888-8888",
+    "email-info" : "sales@greatidea.io",
   },
   "footer": {
     "copyright" : "Copyright Great Idea! 2018"
   },
 };
 
-// Example: Update the img src for the logo
+
+// NAV && LOGO
+let navLinks = document.querySelectorAll('nav a');
+navLinks.forEach((link, idx) => {
+  let navItem = siteContent['nav'][`nav-item-${idx + 1}`];
+  link.textContent = navItem;
+});
+
 let logo = document.getElementById("logo-img");
-logo.setAttribute('src', siteContent["nav"]["img-src"])
+logo.setAttribute('src', siteContent["nav"]["img-src"]);
+
+
+// CTA SECTION
+let h1 = document.querySelector('h1');
+h1.textContent = siteContent['cta']['h1'];
+
+let ctaBtn = document.querySelector('.cta button');
+ctaBtn.textContent = siteContent['cta']['button'];
+
+let ctaImg = document.getElementById('cta-img');
+ctaImg.setAttribute('src', siteContent['cta']['img-src']);
+
+
+// MAIN CONTENT SECTION
+//find h4 keys in the main-content object and map those to the '.text-content h4' elements 
+let headerElements = document.querySelectorAll('.text-content h4');
+let headers = [];
+for(const [key, value] of Object.entries(siteContent['main-content'])) {
+  if (key.includes('-h4')) headers.push(value);
+}
+headerElements.forEach((element, idx) => {element.textContent = headers[idx]});
+
+// find the paragraphs and map those to the '.text-content p' elements
+let textElements = document.querySelectorAll('.text-content p');
+let paragraphs = [];
+for(const [key, value] of Object.entries(siteContent['main-content'])) {
+  if (key.includes('content')) paragraphs.push(value);
+}
+textElements.forEach((element, idx) => {element.textContent = paragraphs[idx]});
+
+// middle img
+let middleImg = document.getElementById('middle-img');
+middleImg.setAttribute('src', siteContent['main-content']['middle-img-src']);
+
+
+// CONTACT SECTION
+let contactHeader = document.querySelector('.contact h4');
+contactHeader.textContent = siteContent['contact']['contact-h4'];
+
+// contact info 
+let contactInfoElements = document.querySelectorAll('.contact p');
+let infoContent = [];
+for(const [key, value] of Object.entries(siteContent['contact'])) {
+  if (key.includes('-info')) infoContent.push(value);
+}
+for (let i = 0; i < contactInfoElements.length; i++) {
+  contactInfoElements[i].textContent = infoContent[i]; 
+}
+
+
+// FOOTER SECTION
+let footerP = document.querySelector('footer p');
+footerP.textContent = siteContent['footer']['copyright'];
